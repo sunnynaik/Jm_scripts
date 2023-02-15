@@ -15,12 +15,10 @@ steps:
 - script: pwd
   displayName: 'Run a one-line script'
 
-- task: id-az-pipeline.jmeter-perf-analyzer.custom-build-release-task.perfanalyzer@1
-  displayName: 'Run Perf Analyzer'
-  inputs:
-    jmxsourceRunFilePath: 'FAD_MountSinai_test_v1.jmx'
-    jmxInputFilesSource: sourceCode
-    jmxInputFolderSourcePath: 'inp'
+- task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
+  displayName: 'Install JMeter 5.4.2'
+
+- script: ls
 
 
 - script: |
