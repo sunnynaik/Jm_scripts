@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+  
+
+- task: AlexandreGattiker.jmeter-tasks.custom-jmeter-installer-task.JMeterInstaller@0
+  displayName: 'Install JMeter 5.4.2'
+
+- script: 
+   jmeter -n -t MountSinai_FAD_v01.jmx -l MountSinai_FAD_v01.jtl -e -o MountSinai_FAD_v01_testreport
+  displayName: 'Command Line Script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
