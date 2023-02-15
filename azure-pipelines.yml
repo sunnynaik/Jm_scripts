@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: id-az-pipeline.jmeter-perf-analyzer.custom-build-release-task.perfanalyzer@1
+  displayName: 'Run Perf Analyzer'
+  inputs:
+    jmxsourceRunFilePath: '$(System.DefaultWorkingDirectory)/_sunnynaik_Jm_scripts/FAD_MountSinai_test_v1.jmx'
+    jmxInputFilesSource: sourceCode
+    jmxInputFolderSourcePath: '$(System.DefaultWorkingDirectory)/_sunnynaik_Jm_scripts/inp'
+
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
