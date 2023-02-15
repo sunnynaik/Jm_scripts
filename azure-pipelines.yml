@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    - task: perfanalyzer@1
+      inputs:
+        jmxSource: 'sourceCode'
+        jmxsourceRunFilePath: 'FAD_MountSinai_test_v1.jmx'
+        jmxPropertySource: 'none'
+        jmxInputFilesSource: 'sourceCode'
+        jmxInputFolderSourcePath: 'fad_search.txt'
+        publishResultsToBuildArtifact: true
+        artifactNameReport: 'PerfAnalyzerReport_$(Stage.StageDisplayName)'
+        artifactNameLog: 'PerfAnalyzerLogs_$(Stage.StageDisplayName)'
+        failPipelineIfJMeterFails: false
+        addCustomPluginsToJMeterLib: false
+        jmeterURI: 'https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz'
+        extractedfolderNameforJMeterBinary: 'apache-jmeter-5.5'
+        jmeterCustomUnzippedFolderName: 'apache-jmeter-5.5'
+        jmeterLogFolder: 'CurrentLog_$(Stage.StageDisplayName)'
+        jmeterReportFolder: 'CurrentReport_$(Stage.StageDisplayName)'
+        telemetryDataCollection: true
+    echo See https://aka.ms/yaml
+
+  displayName: 'Run a multi-line script'
