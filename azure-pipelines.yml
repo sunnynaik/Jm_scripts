@@ -16,9 +16,9 @@ steps:
 - task: id-az-pipeline.jmeter-perf-analyzer.custom-build-release-task.perfanalyzer@1
   displayName: 'Run Perf Analyzer'
   inputs:
-    jmxsourceRunFilePath: '$(System.DefaultWorkingDirectory)/FAD_MountSinai_test_v1.jmx'
+    jmxsourceRunFilePath: 'FAD_MountSinai_test_v1.jmx'
     jmxInputFilesSource: sourceCode
-    jmxInputFolderSourcePath: '$(System.DefaultWorkingDirectory)/inp'
+    jmxInputFolderSourcePath: 'inp'
 
 
 - script: |
