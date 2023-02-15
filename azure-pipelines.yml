@@ -11,6 +11,8 @@ pool:
 
 steps:
 - script: echo Hello, world!
+- script: ls
+- script: pwd
   displayName: 'Run a one-line script'
 
 - task: id-az-pipeline.jmeter-perf-analyzer.custom-build-release-task.perfanalyzer@1
